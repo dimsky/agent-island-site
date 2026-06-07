@@ -1,0 +1,118 @@
+---
+import T from './T.astro';
+import LangToggle from './LangToggle.astro';
+
+const DOWNLOAD = 'https://github.com/dimsky/agent-island-dist/releases/latest/download/AgentIsland.dmg';
+---
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="#top" aria-label="Agent Island">
+      <img class="brand-mark" src="/logo.png" width="26" height="26" alt="" aria-hidden="true" />
+      <span class="brand-name pixel">Agent Island</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#features"><T en="Features" zh="功能" /></a>
+      <a href="#support"><T en="Agents" zh="支持" /></a>
+      <a href="#faq"><T en="FAQ" zh="常见问题" /></a>
+    </nav>
+
+    <div class="nav-actions">
+      <LangToggle />
+      <a class="btn btn-accent nav-dl" href={DOWNLOAD} target="_blank" rel="noopener">
+        <T en="Download" zh="下载" />
+      </a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    transition: background 0.25s ease, border-color 0.25s ease,
+      backdrop-filter 0.25s ease;
+    border-bottom: 1px solid transparent;
+  }
+  .nav.scrolled {
+    background: rgba(11, 11, 13, 0.72);
+    backdrop-filter: saturate(160%) blur(12px);
+    border-bottom-color: var(--border);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    gap: 16px;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand-mark {
+    border-radius: 7px;
+  }
+  .brand-name {
+    font-size: 13px;
+    color: var(--text);
+  }
+  .nav-links {
+    display: flex;
+    gap: 26px;
+    font-family: var(--pixel);
+    font-size: 11px;
+    color: var(--text-2);
+  }
+  .nav-links a:hover {
+    color: var(--accent);
+  }
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .icon-link {
+    display: inline-flex;
+    color: var(--text-2);
+    padding: 6px;
+  }
+  .icon-link:hover {
+    color: var(--text);
+  }
+  .nav-dl {
+    padding: 11px 16px;
+  }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+    }
+    .nav-inner {
+      height: 56px;
+    }
+  }
+  @media (max-width: 460px) {
+    .brand-name {
+      display: none;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var nav = document.getElementById('nav');
+    if (!nav) return;
+    var onScroll = function () {
+      if (window.scrollY > 12) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+</script>

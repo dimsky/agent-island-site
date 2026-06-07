@@ -1,0 +1,1117 @@
+---
+import T from './T.astro';
+---
+
+<section class="oi-demo section" id="demo">
+  <div class="container oi-head">
+    <p class="eyebrow"><T en="Live demo" zh="实时演示" /></p>
+    <h2 class="section-title">
+      <T en="It all happens in the notch" zh="一切都发生在灵动岛里" />
+    </h2>
+    <p class="section-sub">
+      <T
+        en="Sessions, approvals, questions, results, and a one-click jump back to the exact terminal — right where your eyes already are."
+        zh="会话、审批、提问、结果，再加一键精准跳回那个终端——就在你视线本来所在的地方。"
+      />
+    </p>
+  </div>
+
+  <div class="oi-stage" id="oi-stage">
+    <p class="sr-only">
+      <T
+        en="An animated illustration of the Agent Island notch: it lists agent sessions, asks for an inline approval, answers a question, and on the final step a click on a session raises that session's terminal window to the front."
+        zh="Agent Island 灵动岛的动画演示：列出 Agent 会话、原地请求审批、回答提问，并在最后一步点击某个会话，把该会话对应的终端窗口调到最前。"
+      />
+    </p>
+
+    <!-- ===== Laptop ===== -->
+    <div class="oi-laptop">
+      <div class="oi-screen" id="oi-screen" aria-hidden="true">
+        <div class="oi-wall"></div>
+        <div class="oi-scan"></div>
+
+        <!-- menu bar -->
+        <div class="oi-menubar">
+          <div class="oi-mb-l">
+            <span class="oi-mb-mark">
+              <img src="/logo.png" width="14" height="14" alt="" style="display:block;border-radius:3px" />
+            </span>
+            <span class="oi-mb-app">Agent Island</span>
+            <span class="oi-mb-menu"><span lang="en">File</span><span lang="zh">文件</span></span>
+            <span class="oi-mb-menu"><span lang="en">Edit</span><span lang="zh">编辑</span></span>
+            <span class="oi-mb-menu"><span lang="en">Window</span><span lang="zh">窗口</span></span>
+            <span class="oi-mb-menu"><span lang="en">Help</span><span lang="zh">帮助</span></span>
+          </div>
+          <div class="oi-mb-r">
+            <svg class="oi-mb-glyph" width="15" height="11" viewBox="0 0 24 18" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M2 6a15 15 0 0 1 20 0"></path><path d="M5.5 9.5a10 10 0 0 1 13 0"></path><path d="M9 13a5 5 0 0 1 6 0"></path><circle cx="12" cy="16" r="0.6" fill="currentColor"></circle>
+            </svg>
+            <svg class="oi-mb-glyph" width="22" height="11" viewBox="0 0 28 14" fill="none" stroke="currentColor" stroke-width="1.6">
+              <rect x="1" y="2" width="22" height="10" rx="2.4"></rect><rect x="24.5" y="5" width="2" height="4" rx="1" fill="currentColor" stroke="none"></rect><rect x="3" y="4" width="14" height="6" rx="1" fill="currentColor" stroke="none"></rect>
+            </svg>
+            <span id="oi-clock">Mon 9:41 AM</span>
+          </div>
+        </div>
+
+        <!-- desktop with three staggered terminal windows -->
+        <div class="oi-desktop">
+          <!-- back-left: Gemini -->
+          <div class="oi-term oi-term-gemini" id="oi-term-gemini">
+            <div class="oi-term-bar">
+              <span class="oi-tl oi-tl-r"></span><span class="oi-tl oi-tl-y"></span><span class="oi-tl oi-tl-g"></span>
+              <span class="oi-term-title">gemini — optimize-queries · cmux</span>
+            </div>
+            <div class="oi-term-body">
+              <div class="oi-cr is-shown">Profiling the slow queries.</div>
+              <div class="oi-ctool is-shown">Read(prisma/schema.prisma)</div>
+              <div class="oi-ctree is-shown">└ 1.2 KB</div>
+              <div class="oi-ctool is-shown">Edit(src/db/queries.ts)</div>
+              <div class="oi-ctree is-shown">└ updated <span class="oi-ok">+8 −23</span></div>
+            </div>
+          </div>
+
+          <!-- back-right: Codex -->
+          <div class="oi-term oi-term-codex" id="oi-term-codex">
+            <div class="oi-term-bar">
+              <span class="oi-tl oi-tl-r"></span><span class="oi-tl oi-tl-y"></span><span class="oi-tl oi-tl-g"></span>
+              <span class="oi-term-title">codex — backend-server · Ghostty</span>
+            </div>
+            <div class="oi-term-body">
+              <div class="oi-cr is-shown">Building the REST endpoints.</div>
+              <div class="oi-ctool is-shown">Write(src/routes/users.ts)</div>
+              <div class="oi-ctree is-shown">└ new file · 47 lines</div>
+              <div class="oi-ctool is-shown">Bash(npm test)</div>
+              <div class="oi-ctree is-shown">└ <span class="oi-ok">3 passed</span></div>
+            </div>
+          </div>
+
+          <!-- front: Claude (active session, content driven by the storyboard) -->
+          <div class="oi-term oi-term-claude is-front" id="oi-term-claude">
+            <div class="oi-term-bar">
+              <span class="oi-tl oi-tl-r"></span><span class="oi-tl oi-tl-y"></span><span class="oi-tl oi-tl-g"></span>
+              <span class="oi-term-title" id="oi-term-claude-title">claude — fix-auth-bug · iTerm2</span>
+            </div>
+            <div class="oi-term-body" id="oi-body-claude">
+              <div class="oi-cr is-shown">Let me look at the auth module.</div>
+              <div class="oi-ci is-shown">Searched 6 patterns <span class="oi-hint">ctrl+o</span></div>
+              <div class="oi-ci is-shown">Read 2 files <span class="oi-hint">ctrl+o</span></div>
+              <div class="oi-sp is-shown"></div>
+              <div class="oi-cr is-shown">Found it — token validation skips the expiry check.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- the notch -->
+        <div class="oi-notch-wrap">
+          <div class="oi-notch" id="oi-notch" data-state="compact">
+            <!-- compact / idle -->
+            <div class="oi-layer is-active" data-layer="compact">
+              <canvas class="oi-petc oi-petc-compact" data-pet="claude"></canvas>
+              <span class="oi-compact-name">fix auth bug</span>
+              <span class="oi-compact-count">3</span>
+            </div>
+
+            <!-- sessions / overview -->
+            <div class="oi-layer" data-layer="sessions">
+              <div class="oi-sess oi-sess-hero" data-term="claude">
+                <span class="oi-pet"><canvas class="oi-petc oi-petc-hero" data-pet="claude"></canvas></span>
+                <div class="oi-sess-main">
+                  <div class="oi-sess-r1">
+                    <span class="oi-sess-name">fix auth bug</span>
+                    <span class="oi-tag">Claude</span><span class="oi-tag">iTerm2</span>
+                    <span class="oi-dur">27m</span>
+                  </div>
+                  <div class="oi-sess-you">You: fix the auth bug in middleware</div>
+                  <div class="oi-sess-status" style="color:var(--blue)">Editing middleware.ts</div>
+                </div>
+              </div>
+              <div class="oi-sess oi-sess-mini" data-term="codex">
+                <canvas class="oi-petc oi-petc-mini" data-pet="otter"></canvas>
+                <span class="oi-sess-name">backend server</span>
+                <span class="oi-tag">Codex</span><span class="oi-tag">Ghostty</span><span class="oi-dur">1h</span>
+              </div>
+              <div class="oi-sess oi-sess-mini" data-term="gemini">
+                <canvas class="oi-petc oi-petc-mini" data-pet="fox"></canvas>
+                <span class="oi-sess-name">optimize queries</span>
+                <span class="oi-tag">Gemini</span><span class="oi-tag">cmux</span><span class="oi-dur">5h</span>
+              </div>
+            </div>
+
+            <!-- approval -->
+            <div class="oi-layer" data-layer="approval">
+              <div class="oi-appr-head">
+                <span class="oi-pulse"></span>
+                <span><T en="Permission request" zh="权限请求" /></span>
+              </div>
+              <div class="oi-appr-tool">
+                <span class="oi-appr-warn">⚠</span>
+                <span class="oi-appr-name">Edit</span>
+                <span class="oi-appr-path">src/auth/middleware.ts</span>
+              </div>
+              <div class="oi-diff">
+                <div class="oi-diff-l"><span class="oi-diff-ln">12</span><span>const verify = (token) =&gt;</span></div>
+                <div class="oi-diff-l oi-diff-del"><span class="oi-diff-ln">13</span><span>- jwt.verify(token)</span></div>
+                <div class="oi-diff-l oi-diff-add"><span class="oi-diff-ln">13</span><span>+ if (!token) throw new</span></div>
+                <div class="oi-diff-l oi-diff-add"><span class="oi-diff-ln">14</span><span>+   AuthError('missing')</span></div>
+              </div>
+              <div class="oi-appr-btns">
+                <div class="oi-appr-btn oi-btn-deny" id="oi-deny"><T en="Deny" zh="拒绝" /> <span class="oi-kbd">⌘N</span></div>
+                <div class="oi-appr-btn oi-btn-allow" id="oi-allow"><T en="Allow" zh="允许" /> <span class="oi-kbd">⌘Y</span></div>
+              </div>
+            </div>
+
+            <!-- ask -->
+            <div class="oi-layer" data-layer="ask">
+              <div class="oi-ask-head">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                <span><T en="Claude asks" zh="Claude 提问" /></span>
+              </div>
+              <div class="oi-ask-q">Which package manager?</div>
+              <div class="oi-opts">
+                <div class="oi-opt" data-idx="0" data-label="pnpm"><span class="oi-num">⌘1</span><span>pnpm</span></div>
+                <div class="oi-opt" data-idx="1" data-label="npm"><span class="oi-num">⌘2</span><span>npm</span></div>
+                <div class="oi-opt" data-idx="2" data-label="bun"><span class="oi-num">⌘3</span><span>bun</span></div>
+              </div>
+            </div>
+
+            <!-- approved feedback -->
+            <div class="oi-layer" data-layer="approved">
+              <span class="oi-approved-check">✓</span>
+              <span id="oi-approved-label">Allowed</span>
+            </div>
+
+            <!-- jump: same sessions, hero done + click-to-jump -->
+            <div class="oi-layer" data-layer="jump">
+              <div class="oi-sess oi-sess-hero oi-sess-hl" data-term="claude">
+                <span class="oi-pet"><canvas class="oi-petc oi-petc-hero" data-pet="claude"></canvas></span>
+                <div class="oi-sess-main">
+                  <div class="oi-sess-r1">
+                    <span class="oi-sess-name">fix auth bug</span>
+                    <span class="oi-tag">Claude</span><span class="oi-tag">iTerm2</span>
+                    <span class="oi-dur">28m</span>
+                  </div>
+                  <div class="oi-sess-you">You: fix the auth bug in middleware</div>
+                  <div class="oi-sess-status" style="color:var(--green)">
+                    <span lang="en">Done · click to jump</span><span lang="zh">完成 · 点击跳回</span>
+                  </div>
+                </div>
+              </div>
+              <div class="oi-sess oi-sess-mini" data-term="codex">
+                <canvas class="oi-petc oi-petc-mini" data-pet="otter"></canvas>
+                <span class="oi-sess-name">backend server</span>
+                <span class="oi-tag">Codex</span><span class="oi-tag">Ghostty</span><span class="oi-dur">1h</span>
+              </div>
+              <div class="oi-sess oi-sess-mini" data-term="gemini">
+                <canvas class="oi-petc oi-petc-mini" data-pet="fox"></canvas>
+                <span class="oi-sess-name">optimize queries</span>
+                <span class="oi-tag">Gemini</span><span class="oi-tag">cmux</span><span class="oi-dur">5h</span>
+              </div>
+            </div>
+
+            <!-- switcher: ⌃⌘Tab keyboard session switch -->
+            <div class="oi-layer" data-layer="switcher">
+              <div class="oi-sw-head">
+                <span class="oi-keys" id="oi-sw-keys"><span class="oi-key">⌃</span><span class="oi-key">⌘</span><span class="oi-key" id="oi-sw-tab">Tab</span></span>
+                <span class="oi-sw-title"><span lang="en">Switch session</span><span lang="zh">切换会话</span></span>
+              </div>
+              <div class="oi-sw-list">
+                <div class="oi-sw-row" data-term="claude">
+                  <canvas class="oi-petc oi-petc-mini" data-pet="claude"></canvas>
+                  <span class="oi-sw-name">fix auth bug</span>
+                  <span class="oi-tag">iTerm2</span>
+                  <span class="oi-sw-badge" style="color:var(--green)"><span lang="en">done</span><span lang="zh">完成</span></span>
+                </div>
+                <div class="oi-sw-row" data-term="codex">
+                  <canvas class="oi-petc oi-petc-mini" data-pet="otter"></canvas>
+                  <span class="oi-sw-name">backend server</span>
+                  <span class="oi-tag">Ghostty</span>
+                  <span class="oi-sw-badge" style="color:var(--blue)"><span lang="en">running</span><span lang="zh">运行中</span></span>
+                </div>
+                <div class="oi-sw-row" data-term="gemini">
+                  <canvas class="oi-petc oi-petc-mini" data-pet="fox"></canvas>
+                  <span class="oi-sw-name">optimize queries</span>
+                  <span class="oi-tag">cmux</span>
+                  <span class="oi-sw-badge" style="color:var(--text-3)"><span lang="en">idle</span><span lang="zh">空闲</span></span>
+                </div>
+              </div>
+              <div class="oi-sw-hints">
+                <span><b>J/K</b> <span lang="en">cycle</span><span lang="zh">切换</span></span>
+                <span><b>⌃⌘</b> <span lang="en">release</span><span lang="zh">松手跳转</span></span>
+                <span><b>esc</b> <span lang="en">cancel</span><span lang="zh">取消</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- dock -->
+        <div class="oi-dock">
+          <div class="oi-dock-app is-on" data-scene="sessions" title="Sessions">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg>
+            <span class="oi-dock-dot"></span>
+          </div>
+          <div class="oi-dock-app" data-scene="approval" title="Approve">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4"></path></svg>
+            <span class="oi-dock-dot"></span>
+          </div>
+          <div class="oi-dock-app" data-scene="ask" title="Ask">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            <span class="oi-dock-dot"></span>
+          </div>
+          <div class="oi-dock-app" data-scene="jump" title="Jump">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg>
+            <span class="oi-dock-dot"></span>
+          </div>
+          <div class="oi-dock-app" data-scene="switcher" title="Switch">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"></rect><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 14h8"></path></svg>
+            <span class="oi-dock-dot"></span>
+          </div>
+        </div>
+
+        <!-- simulated cursor -->
+        <div class="oi-cursor" id="oi-cursor">
+          <svg width="15" height="19" viewBox="0 0 16 20" fill="none">
+            <path d="M1 1L1 15L5 11L9 19L12 17.5L8 10L14 10L1 1Z" fill="#fff" stroke="#0b0b0d" stroke-width="1.2" stroke-linejoin="round"></path>
+          </svg>
+        </div>
+      </div>
+      <div class="oi-base"></div>
+    </div>
+
+    <!-- ===== Scene narration bar ===== -->
+    <div class="oi-scene">
+      <div class="oi-pills">
+        <button class="oi-pill" data-scene="sessions" aria-label="Sessions scene">
+          <svg class="oi-pill-icon" width="12" height="12" viewBox="0 0 8 8" shape-rendering="crispEdges"><rect x="0" y="0" width="3" height="3" fill="currentColor"></rect><rect x="5" y="0" width="3" height="3" fill="currentColor"></rect><rect x="0" y="5" width="3" height="3" fill="currentColor"></rect><rect x="5" y="5" width="3" height="3" fill="currentColor"></rect></svg>
+          <span class="oi-pill-label"><span lang="en">Sessions</span><span lang="zh">会话</span></span>
+        </button>
+        <button class="oi-pill" data-scene="approval" aria-label="Approve scene">
+          <svg class="oi-pill-icon" width="12" height="12" viewBox="0 0 8 8" shape-rendering="crispEdges"><rect x="2" y="1" width="4" height="1" fill="currentColor"></rect><rect x="1" y="2" width="6" height="3" fill="currentColor"></rect><rect x="2" y="5" width="4" height="1" fill="currentColor"></rect><rect x="3" y="6" width="2" height="1" fill="currentColor"></rect></svg>
+          <span class="oi-pill-label"><span lang="en">Approve</span><span lang="zh">批准</span></span>
+        </button>
+        <button class="oi-pill" data-scene="ask" aria-label="Ask scene">
+          <svg class="oi-pill-icon" width="12" height="12" viewBox="0 0 8 8" shape-rendering="crispEdges"><rect x="0" y="1" width="8" height="3" fill="currentColor"></rect><rect x="1" y="4" width="6" height="1" fill="currentColor"></rect><rect x="1" y="5" width="2" height="1" fill="currentColor"></rect></svg>
+          <span class="oi-pill-label"><span lang="en">Ask</span><span lang="zh">提问</span></span>
+        </button>
+        <button class="oi-pill" data-scene="jump" aria-label="Jump scene">
+          <svg class="oi-pill-icon" width="12" height="12" viewBox="0 0 8 8" shape-rendering="crispEdges"><rect x="4" y="1" width="1" height="1" fill="currentColor"></rect><rect x="5" y="2" width="1" height="1" fill="currentColor"></rect><rect x="1" y="3" width="5" height="1" fill="currentColor"></rect><rect x="5" y="4" width="1" height="1" fill="currentColor"></rect><rect x="4" y="5" width="1" height="1" fill="currentColor"></rect></svg>
+          <span class="oi-pill-label"><span lang="en">Jump</span><span lang="zh">跳回</span></span>
+        </button>
+        <button class="oi-pill" data-scene="switcher" aria-label="Switcher scene">
+          <svg class="oi-pill-icon" width="12" height="12" viewBox="0 0 8 8" shape-rendering="crispEdges"><rect x="0" y="2" width="2" height="2" fill="currentColor"></rect><rect x="3" y="2" width="2" height="2" fill="currentColor"></rect><rect x="6" y="2" width="2" height="2" fill="currentColor"></rect><rect x="1" y="5" width="6" height="1" fill="currentColor"></rect></svg>
+          <span class="oi-pill-label"><span lang="en">Switch</span><span lang="zh">切换</span></span>
+        </button>
+      </div>
+      <div class="oi-scene-title" id="oi-scene-title"><span lang="en"></span><span lang="zh"></span></div>
+      <div class="oi-scene-desc" id="oi-scene-desc"><span lang="en"></span><span lang="zh"></span></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .oi-head {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 36px;
+  }
+  .oi-head .section-sub { margin: 0 auto; }
+
+  .oi-stage { width: 100%; max-width: 940px; margin: 0 auto; }
+  .oi-laptop { position: relative; }
+
+  /* ---- screen ---- */
+  .oi-screen {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    border-radius: 16px 16px 10px 10px;
+    border: 1px solid var(--border-2);
+    overflow: hidden;
+    background:
+      radial-gradient(130% 80% at 50% -12%, rgba(255, 176, 0, 0.12), transparent 52%),
+      radial-gradient(90% 70% at 84% 112%, rgba(87, 151, 255, 0.08), transparent 60%),
+      linear-gradient(180deg, #15151a, #0b0b0e);
+    box-shadow: 0 40px 110px rgba(0, 0, 0, 0.55), inset 0 1px rgba(255, 255, 255, 0.05);
+  }
+  .oi-wall {
+    position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 18px 18px;
+    opacity: 0.4;
+    -webkit-mask-image: radial-gradient(130% 120% at 50% 0%, #000 50%, transparent 96%);
+    mask-image: radial-gradient(130% 120% at 50% 0%, #000 50%, transparent 96%);
+  }
+  .oi-scan {
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: repeating-linear-gradient(to bottom, rgba(255,255,255,0.022) 0 1px, transparent 1px 3px);
+    mix-blend-mode: overlay; opacity: 0.5;
+  }
+  .oi-base {
+    height: 13px; margin: 0 7%;
+    background: linear-gradient(180deg, #2a2a30, #18181c);
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+    position: relative;
+  }
+  .oi-base::after {
+    content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 15%; height: 4px; background: rgba(0, 0, 0, 0.45); border-radius: 0 0 5px 5px;
+  }
+
+  /* ---- menu bar ---- */
+  .oi-menubar {
+    position: absolute; top: 0; left: 0; right: 0; z-index: 9; height: 26px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 12px; font-family: var(--mono); font-size: 11px; color: var(--text-2);
+    background: rgba(8, 8, 10, 0.55); backdrop-filter: blur(8px);
+  }
+  .oi-mb-l { display: flex; align-items: center; gap: 13px; }
+  .oi-mb-mark { display: inline-flex; }
+  .oi-mb-app { color: var(--text); font-weight: 700; }
+  .oi-mb-menu { color: var(--text-2); }
+  .oi-mb-r { display: flex; align-items: center; gap: 11px; }
+  .oi-mb-glyph { color: var(--text-2); }
+  #oi-clock { color: var(--text); font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
+
+  /* ---- desktop terminals ---- */
+  .oi-desktop { position: absolute; inset: 28px 0 14px; z-index: 4; }
+  .oi-term {
+    position: absolute;
+    border-radius: 9px; overflow: hidden;
+    background: rgba(11, 11, 14, 0.9);
+    border: 1px solid var(--border-2);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    transition: opacity 0.5s ease, transform 0.55s cubic-bezier(0.34, 1.4, 0.64, 1);
+  }
+  .oi-term-claude { left: 30%; top: 30%; width: 41%; z-index: 3; }
+  .oi-term-codex  { right: 5%; top: 19%; width: 36%; opacity: 0.42; transform: scale(0.92); z-index: 2; }
+  .oi-term-gemini { left: 5%;  top: 37%; width: 36%; opacity: 0.42; transform: scale(0.92); z-index: 1; }
+  .oi-term.is-front { z-index: 9 !important; opacity: 1 !important; transform: none !important; }
+  .oi-term.is-pop { animation: oi-pop 0.62s cubic-bezier(0.34, 1.5, 0.64, 1); }
+  @keyframes oi-pop {
+    0% { transform: scale(0.92); } 45% { transform: scale(1.05); } 100% { transform: scale(1); }
+  }
+  .oi-term-bar {
+    display: flex; align-items: center; gap: 5px; padding: 6px 9px;
+    background: rgba(242, 235, 221, 0.04); border-bottom: 1px solid var(--border);
+  }
+  .oi-tl { width: 8px; height: 8px; border-radius: 50%; }
+  .oi-tl-r { background: #ff5f56; } .oi-tl-y { background: #ffbd2e; } .oi-tl-g { background: #27c93f; }
+  .oi-term-title { margin-left: 6px; font-family: var(--mono); font-size: 10px; color: var(--text-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  /* ---- notch ---- */
+  .oi-notch-wrap {
+    position: absolute; top: 0; left: 0; right: 0; z-index: 12;
+    display: flex; justify-content: center; pointer-events: none;
+  }
+  .oi-notch {
+    position: relative; pointer-events: auto; cursor: pointer;
+    background: #050506; width: 200px; height: 30px;
+    border-radius: 0 0 14px 14px;
+    transform: scale(var(--ns, 1)); transform-origin: top center;
+    box-shadow: 0 16px 44px rgba(0, 0, 0, 0.62);
+    transition: width 0.5s cubic-bezier(0.5, 1.2, 0.4, 1),
+      height 0.5s cubic-bezier(0.5, 1.2, 0.4, 1),
+      border-radius 0.4s ease, box-shadow 0.4s ease;
+  }
+  .oi-notch::before, .oi-notch::after {
+    content: ''; position: absolute; top: 0; width: 11px; height: 20px; pointer-events: none;
+  }
+  .oi-notch::before { left: -11px; border-top-right-radius: 7px; box-shadow: 5px 0 0 #050506; }
+  .oi-notch::after  { right: -11px; border-top-left-radius: 7px; box-shadow: -5px 0 0 #050506; }
+  .oi-notch[data-state='approval'] { box-shadow: 0 16px 44px rgba(0,0,0,0.62), 0 0 24px rgba(255, 155, 40, 0.22); }
+  .oi-notch[data-state='ask']      { box-shadow: 0 16px 44px rgba(0,0,0,0.62), 0 0 24px rgba(65, 214, 207, 0.22); }
+  .oi-notch[data-state='approved'] { box-shadow: 0 16px 44px rgba(0,0,0,0.62), 0 0 24px rgba(42, 232, 107, 0.22); }
+  .oi-notch[data-state='jump']     { box-shadow: 0 16px 44px rgba(0,0,0,0.62), 0 0 24px rgba(87, 151, 255, 0.20); }
+
+  .oi-layer {
+    position: absolute; inset: 0; overflow: hidden; border-radius: inherit;
+    display: flex; align-items: center; justify-content: center; padding: 0 12px;
+    opacity: 0; transform: scale(0.96); filter: blur(6px); pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1.2), filter 0.3s ease;
+  }
+  .oi-layer.is-active { opacity: 1; transform: none; filter: none; pointer-events: auto; transition-delay: 0.05s; }
+
+  /* compact */
+  .oi-layer[data-layer='compact'] { justify-content: space-between; gap: 8px; padding: 0 13px; }
+  .oi-eq { display: inline-flex; align-items: flex-end; gap: 3px; height: 12px; flex: none; }
+  .oi-eq i { width: 3px; background: var(--blue); border-radius: 1px; box-shadow: 0 0 6px var(--blue); animation: oi-eq 0.9s ease-in-out infinite; }
+  .oi-eq i:nth-child(1) { height: 5px; animation-delay: 0s; }
+  .oi-eq i:nth-child(2) { height: 12px; animation-delay: 0.15s; }
+  .oi-eq i:nth-child(3) { height: 8px; animation-delay: 0.3s; }
+  @keyframes oi-eq { 0%, 100% { transform: scaleY(0.4); } 50% { transform: scaleY(1); } }
+  .oi-compact-name { flex: 1; font-family: var(--mono); font-size: 11px; color: var(--text-2); text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .oi-compact-count { font-family: var(--pixel); font-size: 8px; color: var(--text); background: rgba(242, 235, 221, 0.12); padding: 3px 6px; border-radius: 5px; flex: none; }
+
+  /* sessions + jump */
+  .oi-layer[data-layer='sessions'], .oi-layer[data-layer='jump'] {
+    flex-direction: column; align-items: stretch; justify-content: flex-start; padding: 9px 10px; gap: 2px;
+  }
+  .oi-sess { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 8px; cursor: pointer; transition: background 0.15s ease; }
+  .oi-sess:hover { background: rgba(242, 235, 221, 0.07); }
+  .oi-sess-hl { background: rgba(242, 235, 221, 0.06); }
+  .oi-sess-hero { align-items: flex-start; gap: 9px; }
+  .oi-pet { flex: none; margin-top: 1px; filter: drop-shadow(0 0 3px rgba(255, 176, 0, 0.4)); display: inline-flex; }
+  .oi-petc { image-rendering: pixelated; image-rendering: crisp-edges; display: block; flex: none; }
+  .oi-petc-hero { height: 26px; width: auto; }
+  .oi-petc-mini { height: 15px; width: auto; }
+  .oi-petc-compact { height: 17px; width: auto; }
+  .oi-dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+  .oi-sess-main { flex: 1; min-width: 0; }
+  .oi-sess-r1 { display: flex; align-items: center; gap: 6px; }
+  .oi-sess-name { font-family: var(--mono); font-weight: 600; font-size: 12px; color: var(--text); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .oi-tag { font-family: var(--mono); font-size: 9px; color: var(--text-2); background: rgba(242, 235, 221, 0.1); padding: 2px 6px; border-radius: 5px; flex: none; }
+  .oi-dur { font-family: var(--mono); font-size: 9px; color: var(--text-3); flex: none; }
+  .oi-sess-you { font-family: var(--mono); font-size: 10px; color: var(--text-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 1px; }
+  .oi-sess-status { font-family: var(--mono); font-size: 10px; margin-top: 2px; }
+  .oi-sess-mini .oi-sess-name { font-weight: 400; font-size: 11px; color: var(--text-2); flex: 1; }
+
+  /* approval */
+  .oi-layer[data-layer='approval'] { flex-direction: column; align-items: stretch; justify-content: flex-start; padding: 11px 13px; gap: 6px; }
+  .oi-appr-head { display: flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 10px; color: var(--text-2); }
+  .oi-pulse { width: 6px; height: 6px; border-radius: 50%; background: var(--orange); animation: oi-pulse 1.5s infinite; }
+  .oi-appr-tool { display: flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 11px; }
+  .oi-appr-warn { color: var(--orange); }
+  .oi-appr-name { color: var(--orange); font-weight: 700; }
+  .oi-appr-path { color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .oi-diff { background: rgba(242, 235, 221, 0.04); border-radius: 6px; padding: 4px 0; overflow: hidden; }
+  .oi-diff-l { display: flex; gap: 6px; padding: 0 8px; font-family: var(--mono); font-size: 9px; line-height: 1.75; color: var(--text-2); white-space: nowrap; }
+  .oi-diff-ln { color: var(--text-3); min-width: 14px; text-align: right; }
+  .oi-diff-del { color: #f5a6a6; background: rgba(255, 85, 85, 0.08); }
+  .oi-diff-add { color: #9ff0bd; background: rgba(42, 232, 107, 0.08); }
+  .oi-appr-btns { display: flex; gap: 6px; margin-top: auto; }
+  .oi-appr-btn { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 7px; border-radius: 7px; border: 1px solid var(--border-2); background: transparent; color: var(--text-2); font-family: var(--pixel); font-size: 8px; cursor: pointer; transition: filter 0.2s ease, transform 0.12s ease, background 0.2s ease; }
+  .oi-btn-allow { background: var(--green); color: #06210f; border-color: transparent; }
+  .oi-kbd { font-family: var(--mono); font-size: 8px; opacity: 0.6; }
+  .is-press { transform: scale(0.94); filter: brightness(1.15); }
+
+  /* ask */
+  .oi-layer[data-layer='ask'] { flex-direction: column; align-items: stretch; justify-content: flex-start; padding: 11px 13px; gap: 7px; }
+  .oi-ask-head { display: flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 10px; font-weight: 600; color: #41d6cf; }
+  .oi-ask-q { font-family: var(--mono); font-size: 12px; color: var(--text); }
+  .oi-opts { display: flex; flex-direction: column; gap: 4px; }
+  .oi-opt { display: flex; align-items: center; gap: 8px; padding: 6px 9px; border-radius: 7px; border: 1px solid transparent; background: rgba(65, 214, 207, 0.12); color: var(--text); font-family: var(--mono); font-size: 11px; cursor: pointer; transition: background 0.15s ease, border-color 0.15s ease; }
+  .oi-opt:hover { background: rgba(65, 214, 207, 0.2); }
+  .oi-num { font-family: var(--mono); font-size: 9px; font-weight: 700; color: #04211f; background: #41d6cf; width: 18px; height: 18px; border-radius: 5px; display: inline-flex; align-items: center; justify-content: center; flex: none; }
+  .oi-opt.is-picked { border-color: #41d6cf; background: rgba(65, 214, 207, 0.22); }
+
+  /* approved */
+  .oi-layer[data-layer='approved'] { gap: 8px; font-family: var(--mono); font-size: 12px; color: var(--green); }
+  .oi-approved-check { font-size: 14px; }
+
+  /* switcher */
+  .oi-layer[data-layer='switcher'] { flex-direction: column; align-items: stretch; justify-content: flex-start; padding: 10px 12px; gap: 7px; }
+  .oi-sw-head { display: flex; align-items: center; gap: 8px; }
+  .oi-keys { display: inline-flex; gap: 3px; }
+  .oi-key { font-family: var(--mono); font-size: 9px; color: var(--text-2); background: rgba(242, 235, 221, 0.08); border: 1px solid var(--border-2); border-radius: 4px; padding: 2px 5px; transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease; }
+  .oi-keys.is-held .oi-key { color: #c9b3ff; border-color: rgba(157, 92, 255, 0.55); background: rgba(157, 92, 255, 0.16); box-shadow: 0 0 8px rgba(157, 92, 255, 0.3); }
+  .oi-key.is-tap { animation: oi-tap 0.32s ease; }
+  @keyframes oi-tap { 0% { transform: translateY(0); } 40% { transform: translateY(2px); filter: brightness(1.35); } 100% { transform: translateY(0); } }
+  .oi-sw-title { font-family: var(--mono); font-size: 10px; color: var(--text-2); }
+  .oi-sw-list { display: flex; flex-direction: column; gap: 3px; }
+  .oi-sw-row { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 8px; border: 1.5px solid transparent; transition: background 0.15s ease, border-color 0.15s ease; }
+  .oi-sw-row.is-sel { background: rgba(157, 92, 255, 0.16); border-color: rgba(255, 255, 255, 0.5); }
+  .oi-sw-name { flex: 1; font-family: var(--mono); font-weight: 600; font-size: 11px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .oi-sw-badge { font-family: var(--mono); font-size: 9px; flex: none; }
+  .oi-sw-hints { display: flex; gap: 10px; flex-wrap: wrap; margin-top: auto; padding-top: 2px; }
+  .oi-sw-hints > span { font-family: var(--mono); font-size: 8.5px; color: var(--text-3); display: inline-flex; gap: 4px; align-items: center; }
+  .oi-sw-hints b { font-weight: 400; color: var(--text-2); background: rgba(242, 235, 221, 0.08); border-radius: 3px; padding: 1px 4px; }
+  .oi-notch[data-state='switcher'] { box-shadow: 0 16px 44px rgba(0,0,0,0.62), 0 0 24px rgba(157, 92, 255, 0.22); }
+
+  /* ---- dock ---- */
+  .oi-dock {
+    position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); z-index: 6;
+    display: flex; align-items: center; gap: 3px; padding: 4px 7px;
+    background: rgba(242, 235, 221, 0.08); border: 1px solid var(--border);
+    border-radius: 12px; backdrop-filter: blur(14px);
+  }
+  .oi-dock-app {
+    position: relative; width: 30px; height: 30px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+    color: var(--text-3); transition: transform 0.2s cubic-bezier(0.34, 1.5, 0.64, 1), color 0.2s ease, background 0.2s ease;
+  }
+  .oi-dock-app:hover { transform: translateY(-3px) scale(1.1); color: var(--text); background: rgba(242, 235, 221, 0.08); }
+  .oi-dock-app.is-on { color: var(--accent); background: rgba(255, 176, 0, 0.14); }
+  .oi-dock-dot { position: absolute; bottom: -3px; left: 50%; transform: translateX(-50%); width: 3px; height: 3px; border-radius: 50%; background: var(--accent); opacity: 0; transition: opacity 0.2s ease; }
+  .oi-dock-app.is-on .oi-dock-dot { opacity: 1; }
+
+  /* ---- cursor ---- */
+  .oi-cursor { position: absolute; z-index: 20; left: 52%; top: 62%; opacity: 0; pointer-events: none; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5)); transition: opacity 0.3s ease; }
+  .oi-cursor svg { display: block; transition: transform 0.2s cubic-bezier(0.34, 1.4, 0.64, 1); transform-origin: 10% 10%; }
+  .oi-cursor.is-big svg { transform: scale(1.5); }
+  .oi-cursor.is-click svg { animation: oi-press 0.36s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  @keyframes oi-press { 0% { transform: scale(1.5); } 32% { transform: scale(1.02); } 100% { transform: scale(1.5); } }
+  .oi-cursor::after {
+    content: ''; position: absolute; left: 3px; top: 3px; width: 26px; height: 26px; margin: -13px 0 0 -13px;
+    border-radius: 50%; border: 2px solid var(--accent); opacity: 0; transform: scale(0); pointer-events: none;
+  }
+  .oi-cursor.is-click::after { animation: oi-ring 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  @keyframes oi-ring { 0% { transform: scale(0); opacity: 0.7; } 100% { transform: scale(1.3); opacity: 0; } }
+
+  @keyframes oi-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+  /* ---- scene narration bar ---- */
+  .oi-scene { margin-top: 26px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .oi-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+  .oi-pill {
+    position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 7px;
+    padding: 8px 15px; border: 1px solid var(--border-2); border-radius: 8px; background: transparent;
+    color: var(--text-3); font-family: var(--pixel); font-size: 9px; letter-spacing: 0.04em; line-height: 1;
+    transition: color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .oi-pill .oi-pill-label { position: relative; z-index: 1; }
+  .oi-pill .oi-pill-icon { position: relative; z-index: 1; opacity: 0.5; transition: opacity 0.2s ease, color 0.2s ease; }
+  .oi-pill:hover { color: var(--text-2); border-color: var(--border-2); }
+  .oi-pill::before { content: ''; position: absolute; inset: 0; transform-origin: left; transform: scaleX(0); background: rgba(242, 235, 221, 0.06); pointer-events: none; }
+  .oi-pill.is-done::before { transform: scaleX(1); background: rgba(242, 235, 221, 0.045); }
+  .oi-pill.is-active { color: var(--text); }
+  .oi-pill.is-active .oi-pill-icon { opacity: 1; }
+  .oi-pill.is-active::before { animation: oi-prog var(--dur, 5s) linear forwards; }
+  .oi-pill.is-paused::before { animation-play-state: paused; }
+  @keyframes oi-prog { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+  .oi-pill.is-active[data-scene='sessions'] { border-color: var(--blue); box-shadow: 0 0 11px rgba(87, 151, 255, 0.28); }
+  .oi-pill.is-active[data-scene='sessions'] .oi-pill-icon { color: var(--blue); }
+  .oi-pill.is-active[data-scene='sessions']::before { background: rgba(87, 151, 255, 0.16); }
+  .oi-pill.is-active[data-scene='approval'] { border-color: var(--orange); box-shadow: 0 0 11px rgba(255, 155, 40, 0.28); }
+  .oi-pill.is-active[data-scene='approval'] .oi-pill-icon { color: var(--orange); }
+  .oi-pill.is-active[data-scene='approval']::before { background: rgba(255, 155, 40, 0.16); }
+  .oi-pill.is-active[data-scene='ask'] { border-color: #41d6cf; box-shadow: 0 0 11px rgba(65, 214, 207, 0.28); }
+  .oi-pill.is-active[data-scene='ask'] .oi-pill-icon { color: #41d6cf; }
+  .oi-pill.is-active[data-scene='ask']::before { background: rgba(65, 214, 207, 0.16); }
+  .oi-pill.is-active[data-scene='jump'] { border-color: var(--green); box-shadow: 0 0 11px rgba(42, 232, 107, 0.28); }
+  .oi-pill.is-active[data-scene='jump'] .oi-pill-icon { color: var(--green); }
+  .oi-pill.is-active[data-scene='jump']::before { background: rgba(42, 232, 107, 0.16); }
+  .oi-pill.is-active[data-scene='switcher'] { border-color: #9d5cff; box-shadow: 0 0 11px rgba(157, 92, 255, 0.28); }
+  .oi-pill.is-active[data-scene='switcher'] .oi-pill-icon { color: #9d5cff; }
+  .oi-pill.is-active[data-scene='switcher']::before { background: rgba(157, 92, 255, 0.16); }
+
+  .oi-scene-title { font-family: var(--pixel); font-size: 18px; line-height: 1.5; color: var(--text); text-align: center; min-height: 1.5em; }
+  .oi-scene-desc { font-family: var(--mono); font-size: 14px; color: var(--text-2); text-align: center; max-width: 520px; line-height: 1.7; min-height: 1.7em; }
+
+  @media (max-width: 768px) {
+    .oi-scene-title { font-size: 13px; }
+    .oi-scene-desc { font-size: 12px; }
+    .oi-pill { padding: 7px 11px; font-size: 8px; }
+    .oi-mb-menu, .oi-mb-glyph { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .oi-cursor { display: none; }
+    .oi-eq i, .oi-pulse { animation: none; }
+  }
+</style>
+
+<!-- Global block: terminal-line classes are injected at runtime, so they must
+     not be scoped (Astro can't hash dynamically-created nodes). -->
+<style is:global>
+  #oi-body-claude, .oi-term-body { padding: 11px 13px; font-family: var(--mono); font-size: 10.5px; line-height: 1.75; color: var(--text-2); height: 156px; overflow: hidden; }
+  @media (max-width: 768px) { #oi-body-claude, .oi-term-body { height: 116px; font-size: 9px; } }
+  .oi-term-body > div { transition: opacity 0.3s ease, transform 0.3s ease-out; }
+  .oi-term-body.is-typing > div { opacity: 0; transform: translateY(4px); }
+  .oi-term-body.is-typing > div.is-shown { opacity: 1; transform: none; }
+  .oi-cr { color: var(--text); }
+  .oi-cr::before, .oi-ctool::before { content: '●'; color: var(--blue); font-size: 7px; vertical-align: 2px; margin-right: 6px; }
+  .oi-ctool { color: var(--text-2); }
+  .oi-ctree, .oi-ci { padding-left: 15px; color: var(--text-3); font-size: 9.5px; }
+  .oi-hint { color: var(--text-3); opacity: 0.6; font-size: 9px; }
+  .oi-ok { color: var(--green); }
+  .oi-sp { height: 6px; }
+  @media (prefers-reduced-motion: reduce) {
+    .oi-term-body.is-typing > div { opacity: 1 !important; transform: none !important; }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var root = document.documentElement;
+    var screenEl = document.getElementById('oi-screen');
+    var notch = document.getElementById('oi-notch');
+    var cursor = document.getElementById('oi-cursor');
+    var stage = document.getElementById('oi-stage');
+    if (!screenEl || !notch || !stage) return;
+
+    var clockEl = document.getElementById('oi-clock');
+    var bodyClaude = document.getElementById('oi-body-claude');
+    var termClaude = document.getElementById('oi-term-claude');
+    var termCodex = document.getElementById('oi-term-codex');
+    var termGemini = document.getElementById('oi-term-gemini');
+    var sceneTitle = document.getElementById('oi-scene-title');
+    var sceneDesc = document.getElementById('oi-scene-desc');
+
+    function lang() { return root.dataset.lang === 'zh' ? 'zh' : 'en'; }
+
+    /* ---------- pixel pets (canvas, faithful to pixel-pets.json) ---------- */
+    var PETS = {
+      claude: {
+        pal: { k: '#5e2c18', o: '#d9785a', p: '#3a1a0e', w: '#ffffff' },
+        f: [
+          ["......kkkkkkkkkkkk......",".....kooooooooooook.....",".....kooooooooooook.....",".....koowpoooowpook.....",".....kooppooooppook.....",".....kooppooooppook.....","...oooooooooooooooooo...","...oooooooooooooooooo...",".....kooooooooooook.....",".....kooooooooooook.....",".....kooooooooooook.....",".......o..o..o..o.......",".......k..k..k..k......."],
+          ["......kkkkkkkkkkkk......",".....kooooooooooook.....",".....kooooooooooook.....",".....koowpoooowpook.....",".....kooppooooppook.....",".....kooppooooppook.....","...oooooooooooooooooo...","...oooooooooooooooooo...",".....kooooooooooook.....",".....kooooooooooook.....",".....kooooooooooook.....",".......o..o..o..o.......",".......k........k......."],
+          ["......kkkkkkkkkkkk......",".....kooooooooooook.....",".....kooooooooooook.....",".....koowpoooowpook.....",".....kooppooooppook.....",".....kooppooooppook.....","...oooooooooooooooooo...","...oooooooooooooooooo...",".....kooooooooooook.....",".....kooooooooooook.....",".....kooooooooooook.....",".......o..o..o..o.......","..........k..k.........."]
+        ]
+      },
+      otter: {
+        pal: { b: '#5cb8e8', s: '#3a8fc4', d: '#1c4a6b', l: '#dff2fc', w: '#ffffff', k: '#16323f', c: '#f7a8b8', a: '#9fe0ff' },
+        f: [
+          ["........aaa.............",".......addda............","........aa..............","......dddddd............",".....dbbbbbbd...........","....dbbbbbbbbd..........","...dbsbbbbbbsbd.........","...dbwkbbbbwkbd.........","...dbwkbllbwkbd.........","...dbbcbllbcbbd.........","...dbbbdwwdbbbd.........","..dbllllllllllbd........","..dblllllllllllbd.......","..dbllllllllllbd........","...dbllllllllbd.........","...dbsbbbbbbsbd.........","...dbbd....dbbd.........","...dllbd..dbllld........","....dd......dd.........."],
+          ["........aaa.............",".......addda............","........aa..............","......dddddd............",".....dbbbbbbd...........","....dbbbbbbbbd..........","...dbsbbbbbbsbd.........","...dbwkbbbbwkbd.........","...dbwkbllbwkbd.........","...dbbcbllbcbbd.........","...dbbbdwwdbbbd.........","..dbllllllllllbd........","..dblllllllllllbd.......","..dbllllllllllbd........","...dbllllllllbd.........","...dbsbbbbbbsbd.........","..dbbd......dbbd........","..dllbd....dbllld.......","...dd........dd........."],
+          ["........aaa.............",".......addda............","........aa..............","......dddddd............",".....dbbbbbbd...........","....dbbbbbbbbd..........","...dbsbbbbbbsbd.........","...dbwkbbbbwkbd.........","...dbwkbllbwkbd.........","...dbbcbllbcbbd.........","...dbbbdwwdbbbd.........","..dbllllllllllbd........","..dblllllllllllbd.......","..dbllllllllllbd........","...dbllllllllbd.........","...dbsbbbbbbsbd.........","....dbbddbbd............","....dllbbllld...........",".....dd..dd............."]
+        ]
+      },
+      fox: {
+        pal: { o: '#2c4a22', g: '#5aa84a', l: '#7fc85f', d: '#3f7a32', c: '#f6ecd2', e: '#e0d2a8', w: '#ffffff', k: '#1a1a1a', s: '#86c34a' },
+        f: [
+          ["........................","..........s.............","..........l.............","..o.......sl......o.....","..oo......sl.....oo.....","..ogo....oslo...ogo.....","..oggo...oslo..oggo.....","..oggo..oggggooggo.....","..ogggoogggddggggo.....","..ogggggggddgggggo.....","..ogg.olwkggwklgo.....","..ogg.lwwkggwwklgo....","..ogg.olwlooowlggo....","..oggggooggggooggo....","..ogggcccccccccgdo....","...oggcwwccccwwcgdo...","....ogccccooccccgdo...","....ogcccoooocccgdo...","....oggcccooccccggo...","....oodgccccccgddo....","......oddggggddoo.....","......ooo....ooo......","......oo......oo......","......................"],
+          ["........................","...........s............","...........l............","..o........sl.....o.....","..oo......osl....oo.....","..ogo....oslo...ogo.....","..oggo...oslo..oggo.....","..oggo..oggggooggo.....","..ogggoogggddggggo.....","..ogggggggddgggggo.....","..ogg.olwkggwklgo.....","..ogg.lwwkggwwklgo....","..ogg.olwlooowlggo....","..oggggooggggooggo....","..ogggcccccccccgdo....","...oggcwwccccwwcgdo...","....ogccccooccccgdo...","....ogcccoooocccgdo...","....oggcccooccccggo...","....oodgccccccgddo....","......oddggggddoo.....",".....ooo......ooo.....",".....oo........oo.....","......................"],
+          ["........................","..........s.............","..........l.............","..o......ls.......o.....","..oo.....ls......oo.....","..ogo...olso....ogo.....","..oggo..olso...oggo.....","..oggo..oggggooggo.....","..ogggoogggddggggo.....","..ogggggggddgggggo.....","..ogg.olwkggwklgo.....","..ogg.lwwkggwwklgo....","..ogg.olwlooowlggo....","..oggggooggggooggo....","..ogggcccccccccgdo....","...oggcwwccccwwcgdo...","....ogccccooccccgdo...","....ogcccoooocccgdo...","....oggcccooccccggo...","....oodgccccccgddo....","......oddggggddoo.....","......ooo....ooo......","......oo......oo......","......................"]
+        ]
+      }
+    };
+    function renderPet(cv, pet, fi) {
+      var f = pet.f[((fi % pet.f.length) + pet.f.length) % pet.f.length];
+      var h = f.length, w = f[0].length;
+      if (cv.width !== w) cv.width = w;
+      if (cv.height !== h) cv.height = h;
+      var ctx = cv.getContext('2d');
+      ctx.clearRect(0, 0, w, h);
+      for (var y = 0; y < h; y++) {
+        var row = f[y];
+        for (var x = 0; x < row.length; x++) {
+          var col = pet.pal[row[x]];
+          if (col) { ctx.fillStyle = col; ctx.fillRect(x, y, 1, 1); }
+        }
+      }
+    }
+    var petNodes = [], petFrame = 0, petTimer = null;
+    function initPets() {
+      petNodes = [];
+      var ns = stage.querySelectorAll('canvas.oi-petc');
+      for (var i = 0; i < ns.length; i++) {
+        var p = PETS[ns[i].getAttribute('data-pet')];
+        if (p) { petNodes.push({ cv: ns[i], pet: p }); renderPet(ns[i], p, 0); }
+      }
+    }
+    function petTick() { petFrame++; for (var i = 0; i < petNodes.length; i++) renderPet(petNodes[i].cv, petNodes[i].pet, petFrame); }
+    function startPets() { if (!petTimer && petNodes.length) petTimer = setInterval(petTick, 430); }
+    function stopPets() { if (petTimer) { clearInterval(petTimer); petTimer = null; } }
+
+    /* ---------- live clock ---------- */
+    var DAYS = {
+      en: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+      zh: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
+    };
+    function drawClock() {
+      if (!clockEl) return;
+      var d = new Date(), L = lang(), days = DAYS[L];
+      var h = d.getHours(), m = ('0' + d.getMinutes()).slice(-2);
+      if (L === 'en') {
+        var ap = h >= 12 ? 'PM' : 'AM', hh = h % 12 || 12;
+        clockEl.textContent = days[d.getDay()] + '  ' + hh + ':' + m + ' ' + ap;
+      } else {
+        clockEl.textContent = days[d.getDay()] + ' ' + h + ':' + m;
+      }
+    }
+    drawClock();
+    setInterval(drawClock, 20000);
+
+    /* ---------- scene narration copy (bilingual) ---------- */
+    var SCENES = {
+      sessions: {
+        en: { t: 'Every agent, one glance.', d: 'Claude Code, Codex, Gemini CLI — every session lands in a single notch panel.' },
+        zh: { t: '所有 Agent，一眼看全。', d: 'Claude Code、Codex、Gemini CLI——每个会话都汇入一个灵动岛面板。' },
+      },
+      approval: {
+        en: { t: 'Approve without leaving.', d: 'Allow or deny a file edit right in the notch. Your flow never breaks.' },
+        zh: { t: '不切窗口就批准。', d: '文件改动直接在灵动岛里 Allow / Deny，心流不中断。' },
+      },
+      ask: {
+        en: { t: 'Answer in the notch.', d: 'When an agent needs a decision, one tap keeps it moving.' },
+        zh: { t: '在灵动岛里做决定。', d: 'Agent 需要你拍板时，点一下就继续。' },
+      },
+      jump: {
+        en: { t: 'One click back.', d: 'Click a session and jump straight to the exact terminal it lives in.' },
+        zh: { t: '一键精准跳回。', d: '点一个会话，直接跳回它所在的那个终端。' },
+      },
+      switcher: {
+        en: { t: 'Switch sessions, keyboard-only.', d: 'Hold ⌃⌘, tap to cycle, release to jump to that session — never touch the mouse.' },
+        zh: { t: '快捷键秒切会话。', d: '按住 ⌃⌘，点按循环，松手跳到该会话——全程不碰鼠标。' },
+      },
+    };
+    function setBi(host, en, zh) {
+      if (!host) return;
+      var e = host.querySelector('[lang="en"]'), z = host.querySelector('[lang="zh"]');
+      if (e) e.textContent = en;
+      if (z) z.textContent = zh;
+    }
+    function renderSceneText(scene) {
+      var meta = SCENES[scene];
+      if (!meta) return;
+      setBi(sceneTitle, meta.en.t, meta.zh.t);
+      setBi(sceneDesc, meta.en.d, meta.zh.d);
+    }
+
+    /* ---------- notch sizing per layer ---------- */
+    var SIZE = {
+      compact: { w: 200, h: 30, r: 14 },
+      sessions: { w: 368, h: 190, r: 18 },
+      approval: { w: 368, h: 214, r: 18 },
+      ask: { w: 336, h: 198, r: 18 },
+      approved: { w: 236, h: 40, r: 14 },
+      jump: { w: 368, h: 190, r: 18 },
+      switcher: { w: 384, h: 234, r: 18 },
+    };
+    var curLayer = 'compact';
+    function setLayer(name) {
+      var s = SIZE[name];
+      if (!s) return;
+      var ls = notch.querySelectorAll('.oi-layer');
+      for (var i = 0; i < ls.length; i++) {
+        ls[i].classList.toggle('is-active', ls[i].getAttribute('data-layer') === name);
+      }
+      notch.style.width = s.w + 'px';
+      notch.style.height = s.h + 'px';
+      notch.style.borderRadius = '0 0 ' + s.r + 'px ' + s.r + 'px';
+      notch.setAttribute('data-state', name);
+      curLayer = name;
+    }
+    function fit() {
+      var w = screenEl.clientWidth || 900;
+      var ns = Math.min(1, w / 430);
+      notch.style.setProperty('--ns', ns.toFixed(3));
+    }
+
+    /* ---------- terminal content + line-by-line reveal ---------- */
+    var TERM = {
+      intro: [['cr', 'Let me look at the auth module.'],
+        ['ci', 'Searched 6 patterns <span class="oi-hint">ctrl+o</span>'],
+        ['ci', 'Read 2 files <span class="oi-hint">ctrl+o</span>'],
+        ['sp', ''],
+        ['cr', 'Found it — token validation skips the expiry check.']],
+      approving: [['ctool', 'Edit(src/auth/middleware.ts)'],
+        ['ctree', '└ awaiting permission…']],
+      approved: [['ctool', 'Edit(src/auth/middleware.ts)'],
+        ['ctree', '└ updated <span class="oi-ok">+3 −1</span>'],
+        ['cr', 'Running the tests to verify.'],
+        ['ci', 'npm test — <span class="oi-ok">8 passed</span>'],
+        ['sp', ''],
+        ['cr', 'All checks passing.']],
+      askIntro: [['cr', 'Build is green. Ready to install deps.'],
+        ['ci', 'Found 3 lockfiles <span class="oi-hint">ctrl+o</span>']],
+      answered: [['cr', 'Installing with pnpm…'],
+        ['ci', 'pnpm install — <span class="oi-ok">done (4.2s)</span>'],
+        ['sp', ''],
+        ['cr', 'Workspace ready. <span class="oi-ok">✓</span>']],
+      done: [['ctool', 'Edit(src/auth/middleware.ts) <span class="oi-ok">+3 −1</span>'],
+        ['ctool', 'Bash(npm test)'],
+        ['ctree', '└ <span class="oi-ok">8 passed</span>'],
+        ['sp', ''],
+        ['cr', 'All done — auth bug fixed across 3 files.']],
+    };
+    var revealTimers = [];
+    function clearReveal() {
+      for (var i = 0; i < revealTimers.length; i++) clearTimeout(revealTimers[i]);
+      revealTimers = [];
+    }
+    function fillTerm(lines, instant) {
+      if (!bodyClaude) return;
+      clearReveal();
+      var html = '';
+      for (var i = 0; i < lines.length; i++) {
+        var cls = lines[i][0], txt = lines[i][1];
+        html += '<div class="oi-' + cls + (instant ? ' is-shown' : '') + '">' + (cls === 'sp' ? '' : txt || '&nbsp;') + '</div>';
+      }
+      bodyClaude.innerHTML = html;
+      if (instant) { bodyClaude.classList.remove('is-typing'); return; }
+      bodyClaude.classList.add('is-typing');
+      var rows = bodyClaude.children;
+      for (var j = 0; j < rows.length; j++) {
+        (function (r, delay) {
+          revealTimers.push(setTimeout(function () {
+            r.classList.add('is-shown');
+            bodyClaude.scrollTop = bodyClaude.scrollHeight;
+          }, delay));
+        })(rows[j], 70 + j * 130);
+      }
+    }
+
+    /* ---------- raise a terminal window to the front (precise jump) ---------- */
+    var terms = [termClaude, termCodex, termGemini];
+    function raiseTerm(el) {
+      if (!el) return;
+      for (var i = 0; i < terms.length; i++) if (terms[i]) terms[i].classList.remove('is-front');
+      el.classList.add('is-front');
+      el.classList.remove('is-pop');
+      void el.offsetWidth;
+      el.classList.add('is-pop');
+      setTimeout(function () { el.classList.remove('is-pop'); }, 640);
+    }
+    function termFor(name) { return name === 'codex' ? termCodex : name === 'gemini' ? termGemini : termClaude; }
+
+    /* ---------- simulated cursor (quadratic bezier, RAF) ---------- */
+    var raf = null;
+    function jit() { return (Math.random() - 0.5) * 2; }
+    function moveCursor(xPct, yPct, show) {
+      if (!cursor) return;
+      cursor.style.opacity = show ? '1' : '0';
+      var x = xPct, y = yPct;
+      if (isNaN(x) || isNaN(y)) return;
+      var x0 = parseFloat(cursor.style.left), y0 = parseFloat(cursor.style.top);
+      if (isNaN(x0)) x0 = 52;
+      if (isNaN(y0)) y0 = 62;
+      if (raf) { cancelAnimationFrame(raf); raf = null; }
+      var dx = x - x0, dy = y - y0, dist = Math.sqrt(dx * dx + dy * dy);
+      if (!show || dist < 0.4) {
+        cursor.style.left = x.toFixed(2) + '%';
+        cursor.style.top = y.toFixed(2) + '%';
+        return;
+      }
+      var far = dist > 6;
+      var cx = (x0 + x) / 2 + (far ? jit() * Math.min(dist * 0.35, 7) : 0);
+      var cy = (y0 + y) / 2 + (far ? jit() * Math.min(dist * 0.25, 5) : 0);
+      var dur = Math.min(900, 360 + dist * 9);
+      var start = performance.now();
+      function frame(now) {
+        var p = Math.min((now - start) / dur, 1);
+        var e = 1 - Math.pow(1 - p, 3);
+        var b = 1 - e;
+        var nx = b * b * x0 + 2 * b * e * cx + e * e * x;
+        var ny = b * b * y0 + 2 * b * e * cy + e * e * y;
+        cursor.style.left = nx.toFixed(2) + '%';
+        cursor.style.top = ny.toFixed(2) + '%';
+        if (p < 1) raf = requestAnimationFrame(frame); else raf = null;
+      }
+      raf = requestAnimationFrame(frame);
+    }
+    function aimAt(el, fx, fy) {
+      if (!el) return;
+      var sr = screenEl.getBoundingClientRect(), r = el.getBoundingClientRect();
+      if (!r.width) return;
+      var x = ((r.left + r.width * (fx == null ? 0.5 : fx) - sr.left) / sr.width) * 100;
+      var y = ((r.top + r.height * (fy == null ? 0.5 : fy) - sr.top) / sr.height) * 100;
+      moveCursor(x, y, true);
+    }
+    function cursorBig(on) { if (cursor) cursor.classList.toggle('is-big', !!on); }
+    function cursorClick() {
+      if (!cursor) return;
+      cursor.classList.remove('is-click');
+      void cursor.offsetWidth;
+      cursor.classList.add('is-click');
+      setTimeout(function () { cursorBig(false); }, 360);
+    }
+    if (cursor) cursor.addEventListener('animationend', function () { cursor.classList.remove('is-click'); });
+    function press(el) {
+      if (!el) return;
+      el.classList.add('is-press');
+      setTimeout(function () { el.classList.remove('is-press'); }, 340);
+    }
+
+    /* ---------- small DOM helpers ---------- */
+    function byId(id) { return document.getElementById(id); }
+    function opt(i) { return notch.querySelector('.oi-opt[data-idx="' + i + '"]'); }
+    function pickOpt(i) {
+      var os = notch.querySelectorAll('.oi-opt');
+      for (var k = 0; k < os.length; k++) os[k].classList.remove('is-picked');
+      var o = opt(i);
+      if (o) o.classList.add('is-picked');
+    }
+    function approvedLabel(t) { var el = byId('oi-approved-label'); if (el) el.textContent = t; }
+    function jumpSess(name) { return notch.querySelector('.oi-layer[data-layer="jump"] .oi-sess[data-term="' + name + '"]'); }
+    function selectSw(name) {
+      var rows = notch.querySelectorAll('.oi-sw-row');
+      for (var i = 0; i < rows.length; i++) rows[i].classList.toggle('is-sel', rows[i].getAttribute('data-term') === name);
+    }
+    function swKeys(on) { var k = byId('oi-sw-keys'); if (k) k.classList.toggle('is-held', !!on); }
+    function swTab() { var t = byId('oi-sw-tab'); if (!t) return; t.classList.remove('is-tap'); void t.offsetWidth; t.classList.add('is-tap'); }
+
+    /* ---------- storyboard ---------- */
+    var FLOW = ['sessions', 'approval', 'ask', 'jump', 'switcher'];
+    var plan = [];
+    function add(scene, d, f) { plan.push({ scene: scene, d: d, f: f }); }
+    function buildPlan() {
+      plan = [];
+      // SESSIONS
+      add('sessions', 600, function () { setLayer('sessions'); fillTerm(TERM.intro); raiseTerm(termClaude); moveCursor(52, 64, false); });
+      add('sessions', 2700, function () { cursorBig(true); aimAt(termClaude, 0.5, 0.32); });
+      // APPROVAL
+      add('approval', 900, function () { setLayer('approval'); fillTerm(TERM.approving); });
+      add('approval', 1700, function () { cursorBig(true); aimAt(byId('oi-allow'), 0.5, 0.5); });
+      add('approval', 850, function () { cursorClick(); press(byId('oi-allow')); });
+      add('approval', 850, function () { approvedLabel('Allowed'); setLayer('approved'); fillTerm(TERM.approved); });
+      add('approval', 2700, function () { moveCursor(52, 60, false); });
+      // ASK
+      add('ask', 700, function () { setLayer('ask'); fillTerm(TERM.askIntro); pickOpt(-1); });
+      add('ask', 1700, function () { cursorBig(true); aimAt(opt(0), 0.4, 0.5); });
+      add('ask', 850, function () { cursorClick(); press(opt(0)); pickOpt(0); });
+      add('ask', 950, function () { approvedLabel('pnpm'); setLayer('approved'); fillTerm(TERM.answered); });
+      add('ask', 2500, function () { moveCursor(52, 60, false); });
+      // JUMP — click each session, raise its terminal window
+      add('jump', 800, function () { setLayer('jump'); fillTerm(TERM.done); });
+      add('jump', 1500, function () { cursorBig(true); aimAt(jumpSess('codex'), 0.5, 0.5); });
+      add('jump', 800, function () { cursorClick(); press(jumpSess('codex')); raiseTerm(termCodex); });
+      add('jump', 1500, function () { cursorBig(true); aimAt(jumpSess('gemini'), 0.5, 0.5); });
+      add('jump', 800, function () { cursorClick(); press(jumpSess('gemini')); raiseTerm(termGemini); });
+      add('jump', 1450, function () { cursorBig(true); aimAt(jumpSess('claude'), 0.5, 0.5); });
+      add('jump', 850, function () { cursorClick(); press(jumpSess('claude')); raiseTerm(termClaude); });
+      add('jump', 1200, function () { setLayer('compact'); moveCursor(52, 62, false); });
+      add('jump', 1500, function () {});
+      // SWITCHER — ⌃⌘Tab keyboard cycle, switch to codex (no mouse)
+      add('switcher', 750, function () { setLayer('switcher'); selectSw('claude'); swKeys(true); moveCursor(52, 60, false); });
+      add('switcher', 1300, function () { swTab(); selectSw('codex'); });
+      add('switcher', 1800, function () {});
+      add('switcher', 950, function () { swKeys(false); raiseTerm(termCodex); });
+      add('switcher', 1400, function () { setLayer('compact'); });
+      add('switcher', 1300, function () {});
+    }
+    function sceneDur(scene) {
+      var t = 0;
+      for (var i = 0; i < plan.length; i++) if (plan[i].scene === scene) t += plan[i].d;
+      return t;
+    }
+    function firstIndexOf(scene) {
+      for (var i = 0; i < plan.length; i++) if (plan[i].scene === scene) return i;
+      return 0;
+    }
+
+    var shownScene = '';
+    function onScene(scene) {
+      if (scene === shownScene) return;
+      shownScene = scene;
+      var idx = FLOW.indexOf(scene);
+      var pills = stage.querySelectorAll('.oi-pill');
+      for (var i = 0; i < pills.length; i++) {
+        var p = pills[i], pi = FLOW.indexOf(p.getAttribute('data-scene'));
+        p.classList.remove('is-active', 'is-done', 'is-paused');
+        if (pi >= 0 && idx >= 0) {
+          if (pi < idx) p.classList.add('is-done');
+          else if (pi === idx) {
+            p.style.setProperty('--dur', sceneDur(scene) + 'ms');
+            void p.offsetWidth;
+            p.classList.add('is-active');
+          }
+        }
+      }
+      var apps = screenEl.querySelectorAll('.oi-dock-app');
+      for (var k = 0; k < apps.length; k++) {
+        apps[k].classList.toggle('is-on', apps[k].getAttribute('data-scene') === scene);
+      }
+      renderSceneText(scene);
+    }
+
+    /* ---------- engine ---------- */
+    var at = 0, timer = null, resumeTimer = null, onView = false, visible = true;
+    function runStep() {
+      if (!onView || !visible) return;
+      if (at >= plan.length) at = 0;
+      var step = plan[at];
+      onScene(step.scene);
+      step.f();
+      at++;
+      timer = setTimeout(runStep, step.d);
+    }
+    function play() {
+      if (timer || !onView || !visible) return;
+      startPets();
+      timer = setTimeout(runStep, 380);
+    }
+    function pause() { clearTimeout(timer); timer = null; stopPets(); }
+
+    function bump(ms) {
+      pause();
+      var ap = stage.querySelector('.oi-pill.is-active');
+      if (ap) ap.classList.add('is-paused');
+      clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(function () {
+        var ap2 = stage.querySelector('.oi-pill.is-active');
+        if (ap2) ap2.classList.remove('is-paused');
+        if (onView && visible) timer = setTimeout(runStep, 200);
+      }, ms || 5000);
+    }
+    function jumpTo(scene) {
+      pause();
+      clearReveal();
+      shownScene = '';
+      at = firstIndexOf(scene);
+      var step = plan[at];
+      onScene(step.scene);
+      step.f();
+      at++;
+      bump(5000);
+    }
+
+    /* ---------- interaction ---------- */
+    notch.addEventListener('click', function () {
+      if (curLayer === 'compact') { jumpTo('sessions'); }
+      else { pause(); setLayer('compact'); bump(5000); }
+    });
+    (function () {
+      var allow = byId('oi-allow'), deny = byId('oi-deny');
+      if (allow) allow.addEventListener('click', function (e) {
+        e.stopPropagation(); pause(); press(allow);
+        approvedLabel('Allowed'); setLayer('approved'); fillTerm(TERM.approved);
+        shownScene = ''; onScene('approval'); bump(5000);
+      });
+      if (deny) deny.addEventListener('click', function (e) {
+        e.stopPropagation(); pause(); press(deny); setLayer('compact'); bump(5000);
+      });
+    })();
+    notch.querySelectorAll('.oi-opt').forEach(function (o) {
+      o.addEventListener('click', function (e) {
+        e.stopPropagation(); pause(); press(o);
+        pickOpt(parseInt(o.getAttribute('data-idx'), 10));
+        approvedLabel(o.getAttribute('data-label') || 'OK');
+        setTimeout(function () { setLayer('approved'); fillTerm(TERM.answered); }, 260);
+        shownScene = ''; onScene('ask'); bump(5000);
+      });
+    });
+    notch.querySelectorAll('.oi-sess[data-term]').forEach(function (s) {
+      s.addEventListener('click', function (e) {
+        e.stopPropagation(); pause();
+        raiseTerm(termFor(s.getAttribute('data-term')));
+        shownScene = ''; onScene('jump'); bump(5000);
+      });
+    });
+    stage.querySelectorAll('.oi-pill, .oi-dock-app').forEach(function (b) {
+      b.addEventListener('click', function () { jumpTo(b.getAttribute('data-scene')); });
+    });
+
+    /* ---------- boot ---------- */
+    fit();
+    window.addEventListener('resize', fit, { passive: true });
+    setLayer('compact');
+    new MutationObserver(function () {
+      drawClock();
+      if (shownScene) renderSceneText(shownScene);
+    }).observe(root, { attributes: true, attributeFilter: ['data-lang'] });
+
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) {
+      buildPlan();
+      initPets();
+      setLayer('sessions');
+      fillTerm(TERM.intro, true);
+      onScene('sessions');
+      if (cursor) cursor.style.opacity = '0';
+      return;
+    }
+
+    buildPlan();
+    initPets();
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) {
+        onView = es[0].isIntersecting;
+        if (onView) play(); else pause();
+      }, { threshold: 0.15 }).observe(stage);
+    } else {
+      onView = true;
+      play();
+    }
+    document.addEventListener('visibilitychange', function () {
+      visible = !document.hidden;
+      if (visible) play(); else pause();
+    });
+  })();
+</script>
