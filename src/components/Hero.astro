@@ -55,6 +55,15 @@ const agents = ['Claude Code', 'Codex', 'Gemini CLI', 'OpenCode', 'Kimi CLI', 'Q
         <T en="Download .dmg" zh="下载 .dmg" />
       </a>
     </div>
+
+    <button class="brew-cmd" id="brew-cmd" type="button" aria-label="Copy Homebrew install command">
+      <span class="prompt">$</span>
+      <code>brew install --cask dimsky/tap/agentisland</code>
+      <span class="copy-state">
+        <span class="copy-idle"><T en="copy" zh="复制" /></span>
+        <span class="copy-ok"><T en="copied" zh="已复制" /></span>
+      </span>
+    </button>
   </div>
 </section>
 
@@ -177,6 +186,7 @@ const agents = ['Claude Code', 'Codex', 'Gemini CLI', 'OpenCode', 'Kimi CLI', 'Q
     border-radius: var(--radius-sm);
     padding: 11px 14px;
     color: var(--text);
+    cursor: pointer;
     transition: border-color 0.2s ease;
   }
   .brew-cmd:hover {
@@ -247,5 +257,37 @@ const agents = ['Claude Code', 'Codex', 'Gemini CLI', 'OpenCode', 'Kimi CLI', 'Q
         });
       }, 240);
     }, 2600);
+  })();
+</script>
+
+<script is:inline>
+  (function () {
+    var btn = document.getElementById('brew-cmd');
+    if (!btn) return;
+    var cmd = btn.querySelector('code');
+    btn.addEventListener('click', function () {
+      var text = cmd ? cmd.textContent.trim() : '';
+      var done = function () {
+        btn.classList.add('copied');
+        setTimeout(function () {
+          btn.classList.remove('copied');
+        }, 1600);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, function () {});
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand('copy');
+          done();
+        } catch (e) {}
+        document.body.removeChild(ta);
+      }
+    });
   })();
 </script>
